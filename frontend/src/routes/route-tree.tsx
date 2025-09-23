@@ -75,8 +75,9 @@ export const taskEditRoute = createRoute({
   getParentRoute: () => protectedRoute,
   path: '/tasks/$taskId/edit',
   component: TaskEditPage,
-  validateParams: {
-    taskId: z.string(),
+  parseParams: (params) => {
+    // Validate with Zod and return parsed params
+    return z.object({ taskId: z.string() }).parse(params);
   },
 });
 
